@@ -1,0 +1,30 @@
+def scope_test():
+    spam = "top spam"
+    def do_local():
+        spam = "local spam" #此函数定义了另外的一个spam字符串变量，并且生命周期只在此函数内。此处的spam和外层的spam是两个变量，如果写出spam = spam + “local spam” 会报错
+    def do_nonlocal():
+        nonlocal  spam        #使用外层的spam变量
+        print(spam)
+        spam = "nonlocal spam"
+        print(spam)
+    def do_global():
+        global spam
+        #print(spam)
+        spam = "global spam"
+        print("global:",spam)
+    
+    #spam = "test spam"
+    print("last:",spam)
+    do_global()
+    print("After global assignment:",spam)    
+    do_local()
+    print("After local assignmane:", spam)
+    do_nonlocal()
+    print("After nonlocal assignment:",spam)
+    do_global()
+    print("After global assignment:",spam)
+ 
+scope_test()
+print("In global scope:",spam)
+
+测试nonlocal和global用的
